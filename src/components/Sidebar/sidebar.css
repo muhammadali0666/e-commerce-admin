@@ -1,0 +1,28 @@
+.sidebar {
+  background-color: #fff;
+  padding: 50px;
+width: 20%;
+height: 100vh;
+}
+.sidebar-item {
+margin-top: 50px;
+}
+.sidebar-item:nth-child(1) {
+  margin-top: 0px;
+  }
+.sidebar-text {
+  color: #000;
+}
+.sidebar-icon {
+  color: blue;
+  font-size: 25px;
+  margin-right: 20px;
+}
+.sidebar-link {
+  display: flex;
+  padding-bottom: 10px;
+  align-items: center;
+}
+.sidebar-link.active {
+  border-bottom: #afa6a6 3px solid;
+}

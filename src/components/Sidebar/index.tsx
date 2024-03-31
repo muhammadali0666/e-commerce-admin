@@ -8,8 +8,8 @@ export const Sidebar = () => {
     <div className="sidebar">
       <ul className="sidebar-list">
         <li className="sidebar-item">
-          <NavLink  to="/" className="active">
-            <MdProductionQuantityLimits/> 
+          <NavLink  to="/" className="sidebar-link">
+            <MdProductionQuantityLimits className="sidebar-icon"/> 
             <p className="sidebar-text">
               Add Product
             </p>
@@ -17,7 +17,7 @@ export const Sidebar = () => {
         </li>
         <li className="sidebar-item">
           <NavLink to='/list' className="sidebar-link">
-            <FaListAlt/> 
+            <FaListAlt className="sidebar-icon"/> 
             <p className="sidebar-text">
               Product List
             </p>
