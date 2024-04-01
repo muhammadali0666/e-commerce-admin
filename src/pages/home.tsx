@@ -1,4 +1,4 @@
-import { AddProduct } from "../components/AddProduct";
+import AddProduct from "../components/AddProduct";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 
