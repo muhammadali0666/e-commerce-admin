@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const AddProduct: React.FC = () => {
-
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,22 +14,19 @@ const AddProduct: React.FC = () => {
     event.preventDefault();
     if (selectedFile) {
       const formData = new FormData();
-      formData.append('file', selectedFile);
-
-      console.log(formData);
-      
-      fetch('/api/upload', {
-        method: 'POST',
-        body: formData
-      }).then(response => response.json())
-      .catch(error => {
-        console.log(error);
-        
-      });
+      formData.append("product", selectedFile);
+      fetch("http://localhost:4001/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
-  // Rendering the form component
   return (
     <form onSubmit={handleSubmit}>
       <input type="file" onChange={handleFileChange} />
