@@ -5,6 +5,10 @@ import "./product.css";
 
 const AddProduct: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [category, setCategory] = useState("men");
+  const [name, setName] = useState("");
+  const [oldPrice, setOldPrice] = useState("");
+  const [newPrice, setNewPrice] = useState("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -32,8 +36,48 @@ const AddProduct: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="add-product">
+      <h1>Add product</h1>
 
-    
+      <div className="add-product-name-box">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          className="add-product-name-input"
+          placeholder="title..."
+        />
+      </div>
+      <div className="add-product-price-box">
+        <input
+          value={oldPrice}
+          onChange={(e) => setOldPrice(e.target.value)}
+          type="text"
+          className="add-product-price-input"
+          placeholder="old price..."
+        />
+        <input
+          value={newPrice}
+          onChange={(e) => setNewPrice(e.target.value)}
+          type="text"
+          className="add-product-price-input"
+          placeholder="new price..."
+        />
+      </div>
+      <select
+        defaultValue={category}
+        onChange={(e) => setCategory(e.target.value)}
+        className="add-product-select"
+      >
+        <option value="men" className="add-product-option">
+          Men
+        </option>
+        <option value="women" className="add-product-option">
+          Women
+        </option>
+        <option value="kid" className="add-product-option">
+          Kid
+        </option>
+      </select>
 
       <label className="img-area" htmlFor="upload">
         <img
@@ -41,6 +85,7 @@ const AddProduct: React.FC = () => {
           alt="upload image"
           width={selectedFile ? 200 : 50}
           height={selectedFile ? 200 : 50}
+          className="add-product-img"
         />
       </label>
       <input
@@ -49,8 +94,8 @@ const AddProduct: React.FC = () => {
         onChange={handleFileChange}
         id="upload"
       />
-      <button type="submit">
-        <FaCloudUploadAlt /> Upload
+      <button type="submit" className="add-product-btn">
+        <FaCloudUploadAlt className="add-product-btn-icon"/> Upload
       </button>
     </form>
   );
