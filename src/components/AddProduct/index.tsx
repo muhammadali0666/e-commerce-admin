@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Upload from "../../assets/images/upload-img.webp";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import "./product.css";
 
 const AddProduct: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -28,9 +31,27 @@ const AddProduct: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="file" onChange={handleFileChange} />
-      <button type="submit">Upload</button>
+    <form onSubmit={handleSubmit} className="add-product">
+
+    
+
+      <label className="img-area" htmlFor="upload">
+        <img
+          src={selectedFile ? URL.createObjectURL(selectedFile) : Upload}
+          alt="upload image"
+          width={selectedFile ? 200 : 50}
+          height={selectedFile ? 200 : 50}
+        />
+      </label>
+      <input
+        className="upload-input"
+        type="file"
+        onChange={handleFileChange}
+        id="upload"
+      />
+      <button type="submit">
+        <FaCloudUploadAlt /> Upload
+      </button>
     </form>
   );
 };
