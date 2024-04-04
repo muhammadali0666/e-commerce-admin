@@ -7,8 +7,8 @@ const AddProduct: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [category, setCategory] = useState("men");
   const [name, setName] = useState("");
-  const [oldPrice, setOldPrice] = useState("");
-  const [newPrice, setNewPrice] = useState("");
+  const [oldPrice, setOldPrice] = useState('');
+  const [newPrice, setNewPrice] = useState('');
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -27,7 +27,22 @@ const AddProduct: React.FC = () => {
         body: formData,
       })
         .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          fetch("http://localhost:4001/add_product", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: name,
+              image: data.image_url,
+              category: category,
+              old_price: Number(oldPrice),
+              new_price: Number(newPrice),
+            }),
+          }).then((res) => res.json())
+          .then((info) => alert(info.success))
+        })
         .catch((error) => {
           console.log(error);
         });
@@ -51,14 +66,14 @@ const AddProduct: React.FC = () => {
         <input
           value={oldPrice}
           onChange={(e) => setOldPrice(e.target.value)}
-          type="text"
+          type="number"
           className="add-product-price-input"
           placeholder="old price..."
         />
         <input
           value={newPrice}
           onChange={(e) => setNewPrice(e.target.value)}
-          type="text"
+          type="number"
           className="add-product-price-input"
           placeholder="new price..."
         />
@@ -95,7 +110,7 @@ const AddProduct: React.FC = () => {
         id="upload"
       />
       <button type="submit" className="add-product-btn">
-        <FaCloudUploadAlt className="add-product-btn-icon"/> Upload
+        <FaCloudUploadAlt className="add-product-btn-icon" /> Upload
       </button>
     </form>
   );
