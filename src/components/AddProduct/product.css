@@ -16,6 +16,10 @@
   display: none;
 }
 
+.add-product-title {
+  color: #525252;
+}
+
 .add-product {
   background-color: #fff;
   margin-top: 50px;
