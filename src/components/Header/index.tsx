@@ -1,6 +1,7 @@
 import "./header.css"
 import Logo from "../../assets/images/logo-store.png"
-import { FaRegUserCircle } from "react-icons/fa";
+// import { FaRegUserCircle } from "react-icons/fa";
+import Profile from "../../assets/images/images.png"
 
 export const Header = () => {
   return (
@@ -12,7 +13,8 @@ export const Header = () => {
           </a>
 
           <a href="#" className="header-profile">
-            <FaRegUserCircle className="header-profile-img"/>
+            {/* <FaRegUserCircle className="header-profile-img"/> */}
+            <img src={Profile} alt="img" className="header-img"width={50} height={50} />
           </a>
         </div>
       </div>

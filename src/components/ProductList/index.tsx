@@ -1,7 +1,22 @@
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import "./product.css";
+// import React from 'react';
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
-export const ProductList = () => {
+type Item = {
+  name?: string;
+  category?: string;
+  old_price?: number;
+  new_price?: number;
+  image?: string;
+};
+
+type InfoProps = {
+  info: Item[];
+};
+
+export const ProductList: React.FC<InfoProps> = ({ info }) => {
   return (
     <div className="list">
       <div className="list-box">
@@ -31,45 +46,31 @@ export const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>0</td>
-            <td>Kiyim</td>
-            <td>men</td>
-            <td>Narx</td>
-            <td>Narx</td>
-            <td>
-              <img src="" alt="cloth img" className="list-image" />
-            </td>
-            <td>
-              <RiDeleteBin5Fill className="list-icon" />
-            </td>
-          </tr>
-          <tr>
-            <td>0</td>
-            <td>Kiyim</td>
-            <td>men</td>
-            <td>Narx</td>
-            <td>Narx</td>
-            <td>
-              <img src="" alt="cloth img" className="list-image" />
-            </td>
-            <td>
-              <RiDeleteBin5Fill className="list-icon" />
-            </td>
-          </tr>
-          <tr>
-            <td>0</td>
-            <td>Kiyim</td>
-            <td>men</td>
-            <td>Narx</td>
-            <td>Narx</td>
-            <td>
-              <img src="" alt="cloth img" className="list-image" />
-            </td>
-            <td>
-              <RiDeleteBin5Fill className="list-icon" />
-            </td>
-          </tr>
+          {info.length ? (
+            info.map((item, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{item?.name}</td>
+                <td>{item?.category}</td>
+                <td>{item?.old_price}</td>
+                <td>{item?.new_price}</td>
+                <td>
+                  <img
+                    src={item?.image}
+                    alt="cloth img"
+                    className="list-image"
+                  />
+                </td>
+                <td>
+                  <RiDeleteBin5Fill className="list-icon" />
+                </td>
+              </tr>
+            ))
+          ) : (
+            <Box sx={{ display: "flex", justifyContent: "center", marginTop: "100px" }}>
+              <CircularProgress />
+            </Box>
+          )}
         </tbody>
       </table>
     </div>
