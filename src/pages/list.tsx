@@ -8,7 +8,7 @@ export const List = () => {
   const [info, setInfo] = useState([]);
 
   const getProduct = () => {
-    fetch("http://localhost:4001/all_produc", {
+    fetch("http://localhost:4001/all_product", {
       method: "GET",
       headers: {
         Content_type: "pplication/json",
