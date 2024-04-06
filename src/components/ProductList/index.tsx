@@ -33,6 +33,26 @@ export const ProductList = () => {
     getProduct();
   }, []);
 
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:4001/delete_product/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Fetch error: ", error);
+    }
+    getProduct();
+  };
+
   return (
     <div className="list">
       <div className="list-box">
@@ -95,7 +115,10 @@ export const ProductList = () => {
                     />
                   </td>
                   <td>
-                    <RiDeleteBin5Fill className="list-icon" />
+                    <RiDeleteBin5Fill
+                      className="list-icon"
+                      onClick={() => handleDelete(item?.id)}
+                    />
                   </td>
                 </tr>
               ))
