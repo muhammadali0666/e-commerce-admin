@@ -1,9 +1,8 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import "./product.css";
-// import React from 'react';
 import { RiDeleteBin5Fill } from "react-icons/ri";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Item = {
   name?: string;
@@ -13,12 +12,26 @@ type Item = {
   image?: string;
 };
 
-type InfoProps = {
-  info: Item[];
-};
-
-export const ProductList: React.FC<InfoProps> = ({ info }) => {
+export const ProductList = () => {
   const [search, setSearch] = useState("");
+  const [info, setInfo] = useState<Item[]>([]);
+
+  const getProduct = async () => {
+    try {
+      const response = await fetch("http://localhost:4001/all_product");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setInfo(data);
+    } catch (error) {
+      console.error("Fetch error: ", error);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   return (
     <div className="list">
@@ -64,7 +77,8 @@ export const ProductList: React.FC<InfoProps> = ({ info }) => {
               .filter((product) => {
                 return search.toLowerCase() === ""
                   ? product
-                  : product.name?.includes(search) || product.category?.includes(search);
+                  : product.name?.includes(search) ||
+                      product.category?.includes(search);
               })
               .map((item, i) => (
                 <tr key={i}>
