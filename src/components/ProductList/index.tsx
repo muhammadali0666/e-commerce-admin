@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import "./product.css";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { useEffect, useState } from "react";
+import "./product.css"
 
 type Item = {
   name?: string;
@@ -82,13 +83,13 @@ export const ProductList = () => {
       <table>
         <thead>
           <tr>
-            <th>No</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Old price</th>
-            <th>New price</th>
-            <th>Image</th>
-            <th>Delete</th>
+            <th className="th">No</th>
+            <th className="th">Title</th>
+            <th className="th">Category</th>
+            <th className="th">Old price</th>
+            <th className="th">New price</th>
+            <th className="th-img">Image</th>
+            <th className="th">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -102,12 +103,12 @@ export const ProductList = () => {
               })
               .map((item, i) => (
                 <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{item?.name}</td>
-                  <td>{item?.category}</td>
-                  <td>{item?.old_price}</td>
-                  <td>{item?.new_price}</td>
-                  <td>
+                  <td className="td">{i + 1}</td>
+                  <td className="td">{item?.name}</td>
+                  <td className="td">{item?.category}</td>
+                  <td className="td">{item?.old_price}</td>
+                  <td className="td">{item?.new_price}</td>
+                  <td className="td">
                     <img
                       src={item?.image}
                       alt="cloth img"
