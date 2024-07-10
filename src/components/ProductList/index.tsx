@@ -3,9 +3,10 @@ import Box from "@mui/material/Box";
 import "./product.css";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { useEffect, useState } from "react";
-import "./product.css"
+import "./product.css";
 
 type Item = {
+  _id: string;
   name?: string;
   category?: string;
   old_price?: number;
@@ -109,16 +110,11 @@ export const ProductList = () => {
                   <td className="td">{item?.old_price}</td>
                   <td className="td">{item?.new_price}</td>
                   <td className="td">
-                    <img
-                      src={item?.image}
-                      alt="cloth img"
-                      className="list-image"
-                    />
                   </td>
                   <td>
                     <RiDeleteBin5Fill
                       className="list-icon"
-                      onClick={() => handleDelete(item?.id)}
+                      onClick={() => handleDelete(item._id)}
                     />
                   </td>
                 </tr>
