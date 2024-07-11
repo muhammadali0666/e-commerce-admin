@@ -20,7 +20,7 @@ export const ProductList = () => {
 
   const getProduct = async () => {
     try {
-      const response = await fetch("http://localhost:4001/all_product");
+      const response = await fetch("http://localhost:4001/all_products");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -110,6 +110,7 @@ export const ProductList = () => {
                   <td className="td">{item?.old_price}</td>
                   <td className="td">{item?.new_price}</td>
                   <td className="td">
+                    <img className="list-img" src={item?.image} alt="" width={40} height={40}/>
                   </td>
                   <td>
                     <RiDeleteBin5Fill
